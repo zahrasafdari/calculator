@@ -6,7 +6,7 @@ operators = {
     '+': add,
     '-': sub,
     '*': mul,
-    '\u00f7': truediv,
+    '/': truediv,
     '^': pow,
 }
 
@@ -14,8 +14,8 @@ operators = {
 def turn_to_number(element):
     #   this function use regex to detect if given string
     #   is number (and if it is imaginary or real) or not
-    imag = re.match(r'^-?\d+(?:\.\d+)?(j|i)?$', element)
-    real = re.match(r'^-?\d+(?:\.\d+)?$', element)
+    imag = re.match(r'^(-|\+)?\d+(?:\.\d+)?(j|i)?$', element)
+    real = re.match(r'^(-|\+)?\d+(?:\.\d+)?$', element)
     if real:
         return float(element)
     if imag:
@@ -27,7 +27,18 @@ def turn_to_number(element):
 
 
 def get_index(li, idx, default):
+    if idx < 0:
+        return default
     try:
         return li[idx]
     except IndexError:
         return default
+
+def find(li, condition, from_=0):
+    li = li[from_:]
+   
+    for i, e in enumerate(li):
+        if condition(e):
+            return i+from_
+
+    return None
