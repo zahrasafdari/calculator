@@ -6,7 +6,7 @@ operators = {
     '+': add,
     '-': sub,
     '*': mul,
-    '/': truediv,
+    '\u00f7': truediv,
     '^': pow,
 }
 

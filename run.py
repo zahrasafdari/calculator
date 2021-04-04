@@ -8,3 +8,4 @@ sys.path.append(str(package_root_directory))
 if __name__ == '__main__':
     from calculator.gui import run_gui
     run_gui()
+    
